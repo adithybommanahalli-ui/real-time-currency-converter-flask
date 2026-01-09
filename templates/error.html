@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ texts["title"] }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<style>
+  .college-logo {
+position: absolute;
+top: 20px;
+right: 20px;
+height: 100px;
+width: 100px;
+border-radius: 50%; /* makes the image circular */
+box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* shadow facing downward */
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+
+.college-logo:hover {
+transform: scale(1.05); /* slight zoom effect on hover */
+}
+
+</style>
+<a href="https://gmu.ac.in/" target="_blank">
+  <img src="https://gmu.ac.in/assets/imgs/gmulogo1.png" alt="GMU Logo" class="college-logo">
+</a>
+<div class="container">
+  <h2>{{ error }}</h2>
+  <a href="{{ url_for('converter_page') }}?lang={{ lang }}">{{ texts["back"] }}</a>
+</div>
+<footer>
+  <div class="footer-container">
+    <h3>💡 About the Project</h3>
+    <p><strong>Real‑Time Currency Converter</strong> – a multilingual web app built with Flask and
+      ExchangeRate‑API to convert currencies in real time across 30+ countries.</p>
+    <p>This project is part of a Project‑Based Learning initiative by a student of
+      <a href="https://gmu.ac.in" target="_blank">GM University, Davangere</a>.</p>
+    <p> For more information📽️ Watch our video: <a href="https://youtu.be/dujdUix0awc?si=M9-dPmXrLbyQuzER" target="_blank">YouTube</a></p>
+    <p> Our Project Related Files: <a href=https://drive.google.com/drive/folders/1okWNH4Lq5AuxkBoUjLjdnAESTdRSKkp6 target="_blank">GOOGLE DRIVE</a></p>
+    <p><a class="gmu-link" href="https://gmu.ac.in" target="_blank">Visit GMU Official Website</a></p>
+  </div>
+</footer>
+</body>
+</html>

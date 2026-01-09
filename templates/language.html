@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Language</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<style>
+    .college-logo {
+position: absolute;
+top: 20px;
+right: 20px;
+height: 100px;
+width: 100px;
+border-radius: 50%; /* makes the image circular */
+box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* shadow facing downward */
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+
+.college-logo:hover {
+transform: scale(1.05); /* slight zoom effect on hover */
+}
+
+</style>
+<a href="https://gmu.ac.in/" target="_blank">
+    <img src="https://gmu.ac.in/assets/imgs/gmulogo1.png" alt="GMU Logo" class="college-logo">
+</a>
+<div class="container">
+    <h1>Select Language</h1>
+    <form action="{{ url_for('converter_page') }}" method="get">
+        <select name="lang">
+            {% for code, name in languages.items() %}
+            <option value="{{ code }}">{{ name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Continue</button>
+    </form>
+</div>
+</body>
+</html>

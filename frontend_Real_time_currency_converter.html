@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real-Time Currency Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_pbl.css') }}">
+
+</head>
+<body>
+<div class="container">
+    <h1>💱 Real-Time Currency Converter</h1>
+
+    <form method="POST" action="/">
+        <label for="language">🌐 Language:</label>
+        <select name="language" id="language">
+            {% for code, lang in languages.items() %}
+            <option value="{{ code }}" {% if selected_language == code %}selected{% endif %}>{{ lang }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="from_currency">From:</label>
+        <select name="from_currency" id="from_currency" required>
+            {% for code, name, country in currencies %}
+            <option value="{{ code }}" {% if code == from_currency %}selected{% endif %}>{{ code }} - {{ name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="to_currency">To:</label>
+        <select name="to_currency" id="to_currency" required>
+            {% for code, name, country in currencies %}
+            <option value="{{ code }}" {% if code == to_currency %}selected{% endif %}>{{ code }} - {{ name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" step="0.01" min="0" value="{{ amount or '' }}" required>
+
+        <button type="submit">Convert</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+    </div>
+    {% endif %}
+
+    {% if history %}
+    <div class="history">
+        <h3>Conversion History</h3>
+        <table>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Amount</th>
+                <th>Converted</th>
+            </tr>
+            {% for entry in history %}
+            <tr>
+                <td>{{ entry.From }}</td>
+                <td>{{ entry.To }}</td>
+                <td>{{ entry.Amount }}</td>
+                <td>{{ entry.Converted }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

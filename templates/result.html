@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ texts["title"] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<style>
+    .college-logo {
+position: absolute;
+top: 20px;
+right: 20px;
+height: 100px;
+width: 100px;
+border-radius: 50%; /* makes the image circular */
+box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* shadow facing downward */
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+
+.college-logo:hover {
+transform: scale(1.05); /* slight zoom effect on hover */
+}
+
+</style>
+<a href="https://gmu.ac.in/" target="_blank">
+    <img src="https://gmu.ac.in/assets/imgs/gmulogo1.png" alt="GMU Logo" class="college-logo">
+</a>
+<div class="container result-box">
+    <h1> Currency Converter</h1>
+    <h2>{{ result }}</h2>
+    <a href="{{ url_for('converter_page') }}?lang={{ lang }}">{{ texts["back"] }}</a>
+    <a href="/download">
+        <button class="download-btn">📥 Download History (CSV)</button>
+    </a>
+
+    <h3>{{ texts["history"] }}</h3>
+    {% if history %}
+    <table>
+        <thead>
+        <tr>
+            <th>From</th><th>To</th><th>Amount</th><th>Converted</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in history %}
+        <tr>
+            <td>{{ row.from }}</td>
+            <td>{{ row.to }}</td>
+            <td>{{ row.amount }}</td>
+            <td>{{ row.converted }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No conversion history yet.</p>
+    {% endif %}
+</div>
+<footer>
+    <div class="footer-container">
+        <h3>💡 About the Project</h3>
+        <p><strong>Real‑Time Currency Converter</strong> – a multilingual web app built with Flask and
+            ExchangeRate‑API to convert currencies in real time across 30+ countries.</p>
+        <p>This project is part of a Project‑Based Learning initiative by a student of
+            <a href="https://gmu.ac.in" target="_blank">GM University, Davangere</a>.</p>
+        <p> For more information📽️ Watch our video: <a href="https://youtu.be/dujdUix0awc?si=M9-dPmXrLbyQuzER" target="_blank">YouTube</a></p>
+        <p> Our Project Related Files: <a href=https://drive.google.com/drive/folders/1okWNH4Lq5AuxkBoUjLjdnAESTdRSKkp6 target="_blank">GOOGLE DRIVE</a></p>
+        <p><a class="gmu-link" href="https://gmu.ac.in" target="_blank">Visit GMU Official Website</a></p>
+    </div>
+</footer>
+
+</body>
+</html>
